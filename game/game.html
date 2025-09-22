@@ -4,52 +4,62 @@
     <meta charset="UTF-8">
     <title>Fishing Game</title>
     <link rel="stylesheet" href="css/fishinggame.css">
+    <style>
+        /* Minimal fallback styling for body */
+        body {
+            background: black;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body class="gamebody">
     <div class="game step-0">
+        <!-- Step 0: Welcome screen -->
         <div class="step-0">
-            <h1>Welcome to the fishing game!</h1>
-            <a class="button" id="startButton">Start</a>
-        </div>
-
-        <div class="step-1">
-            <h2>Step 1: Get ready to fish!</h2>
-            <a class="button" id="step1Continue">Continue</a>
-        </div>
-
-        <div class="step-2">
-            <div class="step-2-description">
-                <div>
-                    <div>Step 2: Instructions go here.</div>
-                </div>
+            <h1 style="color:white;text-align:center;">Welcome to the Fishing Game!</h1>
+            <div class="buttons">
+                <a id="startButton" class="button">Start</a>
             </div>
-            <a class="button" id="step2Continue">Continue</a>
         </div>
 
+        <!-- Step 1: Instructions -->
+        <div class="step-1">
+            <h2 style="color:white;text-align:center;">How to Play</h2>
+            <div style="color:white;text-align:center;">
+                Catch as many fish as you can before time runs out!
+            </div>
+            <div class="buttons">
+                <a id="step1Continue" class="button">Continue</a>
+            </div>
+        </div>
+
+        <!-- Step 2: Ready -->
+        <div class="step-2">
+            <h2 style="color:white;text-align:center;">Get Ready!</h2>
+            <div class="buttons">
+                <a id="step2Continue" class="button">Start Fishing</a>
+            </div>
+        </div>
+
+        <!-- Step 3: Game Board -->
         <div class="step-3">
             <div class="score">Score: 0</div>
             <div class="time">Time: 60</div>
             <div class="board"></div>
         </div>
 
-        <div class="step-4">
-            <div class="question-choose-wrapper">
-                <div class="question-choose">
-                    <!-- Question variants will populate here -->
-                </div>
-            </div>
-        </div>
-
+        <!-- Step 5: Game Over / Results -->
         <div class="step-5">
             <div class="result-block-wrapper">
-                <div>
-                    <div class="score-description">Your final score!</div>
+                <div class="score-description">Game Over! Your Score: <span id="finalScore">0</span></div>
+                <div class="buttons">
+                    <a id="replayButton" class="button">Play Again</a>
                 </div>
             </div>
-            <a class="button" id="replayButton">Replay</a>
         </div>
     </div>
 
-    <script src="js/fishinggame.js"></script>
+    <!-- Scripts -->
+    <script src="fishinggame.js"></script>
 </body>
 </html>
