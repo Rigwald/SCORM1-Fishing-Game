@@ -1,0 +1,265 @@
+#Copyright eLearning Brothers LLC 2012 All Rights Reserved
+[-----------------------General Game Style/Design Information-----------------------]
+#Use this design.ini file to change visual elements of the game.
+#(I.e. logos, backgrounds, button styles, game elements, etc.)
+
+#Using colors
+#You can use HTML colors names or HEX codes.
+#Here is a link that has a lot of html colors that you can use: http://en.wikipedia.org/wiki/HTML_color_names#HTML_color_names
+#If you want to use a HEX code for colors then make sure you put a "#" in front of it. You don't need the "#" when using html color names.
+
+#Images and sounds that are specific to the game are found in the config/images and config/sounds folders in the game files.
+
+#IMPORTANT - Don't change any line that has something=@something.
+
+
+[-----------------------Page Background-----------------------]
+#You can change the page design that is outside of the game.
+#Uncomment the next line to use an image as the page background. (Place the file in the config/images folder.
+#body_texture=YourFile
+#Uncomment the next line to use a color in the page background. (Don't forget to comment out the line above also.)
+body_color=#ffffff
+
+[---------------------------Game Fonts-------------------------]
+font=@Game font
+#Usage:  "font_fontFamily= font url". Example: font_testName=test.woff,test.ttf. Then add font with fontFamily to the game element. Example: game_fontFamily=test Name
+
+[-----------------------Game Background-----------------------]
+game=@Game container
+#These lines control the background image and color of the game background.
+#Use "game_background_image" if you want to use Theme backgrounds that you've copied into the resources/backgrounds folder
+#game_background_image=%backgrounds/YourFile
+#The default background file in the game is a partially transparent .png. This allows you to overlay a color.
+game_background_image=sun_rays.png
+#You can change the next line to any html color name or HEX code. Note that
+game_background_gradient_center=#0066CC
+game_background_gradient_edge=#000000
+
+[-----------------------Splash Page Logo-----------------------]
+logo1=@Splash Page Logo
+#You can upload any image that you'd like to use as a logo. Copy the file into the config/images folder and enter the information on the next lines.
+logo1_image=logo.png
+#Make sure the width and height match the logo file.
+logo1_width=659
+logo1_height=325
+#Use the next 2 lines to adjust the positioning of the logo.
+logo1_X=40
+logo1_Y=60
+
+[-----------------------Introduction Page Logo-----------------------]
+logo2=@Instruction Page Logo
+#This is the logo on the instrodution page.
+logo2_image=logo.png
+logo2_width=359
+logo2_height=175
+logo2_X=170
+logo2_Y=20
+
+#Game specific fix to make logo over text
+logo2_style=z-index:10;
+
+[-----------------------Main Game Screen Logo-----------------------]
+logo3=@Main Game Screen Logo
+logo3_image=top-board.png
+#This is the logo on the top of the main game screen
+logo3_width=721
+logo3_height=59
+logo3_Y=0
+#Game specific fix to make logo over text
+logo3_style=z-index:10;
+
+[-----------------Game Description Panel on Introduction Page-----------------]
+description_panel=@Game Description Panel
+description_panel_background_color=transparent
+description_panel_background_image=board.png
+description_panel_border=none
+description_panel_width=611
+description_panel_shadow=false
+description_panel_height=285
+description_panel_padding=6
+description_panel_Y=200
+description_panel_X=55
+
+[-----------------Background of Introduction Page-----------------]
+background_introduction_page=@Background of Introduction Page
+background_introduction_page_width=693
+background_introduction_page_height=485
+background_introduction_page_Y=45
+background_introduction_page_X=15
+
+
+
+[-----------------Game Results Description panel on last page-----------------]
+result_panel=@Game Results Description panel
+result_panel_width=611
+result_panel_height=285
+result_panel_background_image=board.png
+result_panel_background_color=transparent
+result_panel_shadow=false
+result_panel_padding=6
+result_panel_border=none
+result_panel_X=55
+result_panel_Y=100
+
+
+[-----------------Background of  on last page-----------------]
+background_last_page=@Background  on last page
+background_last_page_width=693
+background_last_page_height=485
+background_last_page_background_image=wood.png
+background_last_page_Y=45
+background_last_page_X=15
+
+
+[------------Progress Bar that shows number of answered questions-----------]
+progressbar_container=@Progress bar
+progressbar_container_X=10
+progressbar_container_Y=10
+progressbar_container_padding=2
+#Game specific fix to make logo over text
+progressbar_container_style=z-index:10;
+
+#Mandratory custom field: spacing between items
+progressbar_container_spacing=3
+
+#Do not set width to make it dynamically fit progress bar width
+progressbar_item=@Item in progress bar.
+progressbar_item_height=26
+progressbar_item_width=10
+progressbar_item_background_image=placeholder.png
+progressbar_answered_item=@Answered style
+progressbar_answered_item_background_image=placeholder-fish.png
+progressbar_answered_incorrect_item=@Answered style incorrect
+progressbar_answered_incorrect_item_background_image=placeholder-fish-dead.png
+
+[------------------Progress Bar percent value(step5)-------------------------]
+quiz_percent_value=@Progress bar percent
+quiz_percent_value_text_color=red
+quiz_percent_value_fontSize = 36px
+quiz_percent_value_paddingRight=5
+
+
+[----------------Main Game Buttons {i.e. Continue, Start, Replay}----------------]
+button_up=@Declaring default button
+button_up_gradient_top=#3787e0
+button_up_gradient_bottom=#04389e
+button_up_gloss=true
+button_up_shadow=true
+
+button_over=@
+button_over_gradient_top=#3787e0
+button_over_gradient_bottom=#3787e0
+
+button_down=@
+button_down_gradient_top=#04389e
+button_down_gradient_bottom=#3787e0
+
+#Per button additional rule overrides. Usefull for customizing separate button position
+splash_continuebutton=@Button on splash screen
+splash_continuebutton_Y=430
+splash_continuebutton_X=260
+
+intro_continuebutton=@Button on introduction screen
+intro_continuebutton_Y=430
+intro_continuebutton_X=280
+
+questions_continuebutton=@Button Continue bewteen questions
+questions_continuebutton_X=70
+questions_continuebutton_Y=475
+
+question_continuebutton=@Button Continue after question answering
+question_continuebutton_X=90
+question_continuebutton_Y=475
+
+question_confirmbutton=@Button Confirm selection
+question_confirmbutton_X=110
+question_confirmbutton_Y=475
+
+results_replaybutton=@Button Replay on last screen
+results_replaybutton_X=260
+results_replaybutton_Y=400
+
+
+[------------------Question Options Board Style------------------------]
+
+#Move question board down by pixels:
+margin_top_for_questions_screen=0
+
+#Move question feedback down by pixels(only for vertical options board):
+margin_top_for_questions_feedback=10
+
+#Non-mandatory. Question screen elements common styles(question board, answers box & question feedback box) width & margins only
+question_screen=@
+question_screen_width=699
+question_screen_marginLeft=10
+
+question_choose_wrapper=@
+question_choose_wrapper_X=16
+question_choose_wrapper_Y=100
+question_choose_wrapper_width=336
+question_choose_wrapper_height=368
+
+#Box for question text. Dimensions from here are also applied to container for image
+question_box=@Question text box
+question_box_width=317
+question_box_height=442
+question_box_background_image=question_bg.png
+question_box_padding=5
+question_box_text_color=black
+question_box_Y=70
+question_box_X=370
+
+#Box for question text. Dimensions from here are also applied to container for image
+question_background=@Question text box
+question_background_width=693
+question_background_height=485
+question_background_background_image=wood.png
+question_background_padding=20
+question_background_paddingY=40
+question_background_Y=40
+question_background_X=15
+
+
+#Box for question feedback text.
+question_feedback_box=@Question text box
+question_feedback_box_width=316
+question_feedback_box_height=368
+question_feedback_box_background_image=question.png
+question_feedback_box_background_color=transparent
+question_feedback_box_padding=0
+question_feedback_box_text_color=white
+question_feedback_box_border=none
+question_feedback_box_shadow=false
+question_feedback_box_Y=100
+question_feedback_box_X=26
+
+
+[----------------Question Options Button Styles----------------]
+question_button_up=@Default question answer state
+question_button_up_gradient_top=#658760
+question_button_up_gradient_bottom=#1b3225
+question_button_up_text_color=#FFF
+question_button_up_shadow=true
+question_button_up_radius=10
+question_button_up_width=330
+question_button_up_height=65
+
+#Note Over & Pressed & Selected states are inherited from Default
+
+question_button_over=@Mouse overed question answer state
+question_button_over_gradient_top=#51a6e6
+question_button_over_gradient_bottom=#327cd1
+
+question_button_down=@Pressed question answer state
+question_button_down_gradient_top=#2b6ebe
+question_button_down_gradient_bottom=#1d5183
+
+question_button_selected=@State for selected option for multi-option questions
+question_button_selected_gradient_top=#327cd1
+question_button_selected_gradient_bottom=#327cd1
+question_button_selected_text_color=#FFF
+
+
+#Question feedback header colors
+question_answer_correct_color=#248a2b
+question_answer_incorrect_color=#8a2424

@@ -1,129 +1,87 @@
-/**
- * GitHub-Friendly Fishing Game
- * Converted from original eLearning Brothers 2012 version
- */
+// -------------------------------
+// Fishing Game JS
+// -------------------------------
 
-// ---------- HELPER FUNCTIONS ----------
-function empty(val) {
-    return val === undefined || val === null || val === '';
-}
-function value(val) {
-    return empty(val) ? '' : val;
-}
-function stringToBoolean(str) {
-    return ('' + str).toLowerCase() === 'true';
-}
-function nvl(val, defaultVal) {
-    return empty(val) ? defaultVal : val;
-}
+const game = document.querySelector('.game');
+const startButton = document.getElementById('startButton');
 
-// ---------- SCORM STUBS ----------
-function SCOSetValue(key, val){ console.log("SCOSetValue", key, val); }
-function SCOCommit(){ console.log("SCOCommit"); }
-function SCOPreInitialize(){}
-function SCOInitialize(){}
+// -------------------------------
+// Fish and rope configuration
+// -------------------------------
 
-// ---------- GAME OBJECT ----------
-var game = new function() {
-    var designFile = "design.json";
-    var questionsFile = "questions.json";
-    var soundsFile = "sounds.json";
+const fishData = [
+    { name: 'fish-01', width: 119, height: 49, frames: ['config/images/fish01-0.png', 'config/images/fish01-1.png'] },
+    { name: 'fish-02', width: 143, height: 65, frames: ['config/images/fish02-0.png', 'config/images/fish02-1.png'] },
+    { name: 'fish-03', width: 98, height: 34, frames: ['config/images/fish03-0.png', 'config/images/fish03-1.png'] }
+];
 
-    var questions;
-    var design;
-    var sounds;
-    var questionCount = 0;
-    var instance = this;
-    var score = 0;
-    var questionIndex = 0;
-    var timerOn = false;
-    var timerPrev = null;
-    var gameTime = 0;
-    var timeout = 0;
-
-    // ---------- LOAD CONFIG ----------
-    this.readConfig = function() {
-        $.getJSON("config/questions.json", function(data) {
-            questions = data;
-            if(!questions.questions_displayed_from_count) questions.questions_displayed_from_count = 1;
-            questionCount = questions.questions.length;
-            $(document).trigger('gameLoaded');
-        });
-
-        $.getJSON("config/design.json", function(data) {
-            design = data;
-        });
-
-        $.getJSON("config/sounds.json", function(data) {
-            sounds = data;
-        });
-    };
-
-    // ---------- GAME FLOW ----------
-    this.start = function() {
-        questionIndex = 0;
-        score = 0;
-        gameTime = 0;
-        timeout = nvl(questions.timeout, 0) * 1000;
-
-        $('#game').removeClass().addClass('step-1');
-        $(document).trigger('gameStarted');
-    };
-
-    this.onQuestionChooseRequired = function() {
-        questionIndex++;
-        if(questionIndex > questionCount) {
-            finishGame();
-            return;
-        }
-        $('#game').removeClass().addClass('step-4'); // Question step
-        displayQuestion(questionIndex - 1);
-    };
-
-    function displayQuestion(i) {
-        var q = questions.questions[i];
-        $('#game .question-text').html(value(q.text));
-        var container = $('#game .question-choose').empty();
-        q.answers.forEach(function(a, idx) {
-            var btn = $('<div class="variant">' + value(a.text) + '</div>').data({correct: a.correct});
-            container.append(btn);
-        });
-    }
-
-    // ---------- ANSWER HANDLING ----------
-    $(document).on('click', 'div.variant', function() {
-        var correct = $(this).data('correct');
-        if(correct) score++;
-        instance.onQuestionChooseRequired();
-    });
-
-    // ---------- TIMER ----------
-    this.onTimePassed = function(deltaTime) {
-        gameTime += deltaTime;
-        if(timeout && gameTime > timeout) this.onTimeOut();
-    };
-    this.onTimeOut = function() {
-        timerOn = false;
-        finishGame();
-    };
-
-    // ---------- FINISH ----------
-    function finishGame() {
-        $('#game').removeClass().addClass('step-5'); // Results
-        $('#game .score').html(score + "/" + questionCount);
-        SCOSetValue("score", score);
-        SCOCommit();
-    }
+const rope = {
+    x: 360, // center of board
+    y: 0,
+    height: 490
 };
 
-// ---------- DOCUMENT READY ----------
-$(document).ready(function() {
-    game.readConfig();
+// -------------------------------
+// Sounds
+// -------------------------------
+const biteSound = new Audio('config/sounds/bite.mp3');
+const splashSound = new Audio('config/sounds/splash.mp3');
+
+// -------------------------------
+// Start Game
+// -------------------------------
+startButton.addEventListener('click', function() {
+    game.classList.remove('step-0');
+    game.classList.add('step-1');
+    startGame();
 });
 
-// ---------- WINDOW LOAD ----------
-$(window).on('load', function() {
-    $(document).bind('gameLoaded', function() {
-        game.start();
+function startGame() {
+    game.classList.remove('step-1');
+    game.classList.add('step-2');
+
+    createFish();
+}
+
+// -------------------------------
+// Create fish elements
+// -------------------------------
+function createFish() {
+    const board = document.createElement('div');
+    board.className = 'board';
+    game.appendChild(board);
+
+    fishData.forEach(fish => {
+        const fishContainer = document.createElement('div');
+        fishContainer.className = 'fish-container';
+        fishContainer.style.bottom = '-27px';
+        fishContainer.style.left = Math.random() * (720 - fish.width) + 'px';
+
+        const fishDiv = document.createElement('div');
+        fishDiv.className = 'fish ' + fish.name;
+        fishDiv.style.width = fish.width + 'px';
+        fishDiv.style.height = fish.height + 'px';
+        fishDiv.style.backgroundImage = `url('${fish.frames[0]}')`;
+        fishContainer.appendChild(fishDiv);
+
+        board.appendChild(fishContainer);
+
+        animateFish(fishDiv, fish.frames);
     });
-});
+}
+
+// -------------------------------
+// Animate fish frames
+// -------------------------------
+function animateFish(fishDiv, frames) {
+    let frame = 0;
+    setInterval(() => {
+        frame = (frame + 1) % frames.length;
+        fishDiv.style.backgroundImage = `url('${frames[frame]}')`;
+    }, 500);
+}
+
+// -------------------------------
+// TODO: Hook movement, catching fish, scoring
+// -------------------------------
+// You can expand here using your original logic for rope and hook
