@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Fishing Game</title>
-    <link rel="stylesheet" href="css/fishinggame.css">
+<meta charset="UTF-8">
+<title>Fishing Game</title>
+<link rel="stylesheet" href="css/fishinggame.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="js/fishinggame.js"></script>
 </head>
 <body>
-    <div id="gameContainer"></div>
 
-    <!-- Load jQuery from CDN to avoid local 404 -->
-    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<div id="game">
+  <!-- Step 1: Welcome Screen -->
+  <div class="step-1">Welcome to the Fishing Game!<br>
+      <a href="#" id="step1continuebutton">Start</a>
+  </div>
 
-    <!-- Game scripts -->
-    <script src="js/fishinggame.js"></script>
-    <script src="js/callback.js"></script>
+  <!-- Step 4: Question & Game Board -->
+  <div class="step-4" style="display:none;">
+    <div class="question-text"></div>
+    <div class="question-choose"></div>
+    <div class="board" style="position:relative; width:720px; height:500px; background:lightblue;">
+      <div class="rope" style="position:absolute; top:-400px; left:350px; width:5px; height:420px; background:brown;"></div>
+      <div class="fishes"></div>
+    </div>
+  </div>
 
-    <script>
-        // Ensure game starts after all scripts load
-        window.onload = function() {
-            if (typeof GAME !== "undefined" && typeof GAME.init === "function") {
-                GAME.init();
-            } else {
-                console.error("GAME.init() not found. Ensure fishinggame.js loaded correctly.");
-            }
-        };
-    </script>
+  <!-- Step 5: Results -->
+  <div class="step-5" style="display:none;">
+    <h2>Game Over!</h2>
+    <div>Score: <span class="score"></span></div>
+    <a href="#" id="step5replaybutton">Play Again</a>
+  </div>
+</div>
+
 </body>
 </html>

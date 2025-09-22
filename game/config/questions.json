@@ -1,0 +1,20 @@
+{
+  "timeout": 60,
+  "questions_displayed_from_count": 1,
+  "questions": [
+    {
+      "text": "Which fish is fastest?",
+      "answers": [
+        {"text": "Trout", "correct": true},
+        {"text": "Salmon", "correct": false}
+      ]
+    },
+    {
+      "text": "Which fish is largest?",
+      "answers": [
+        {"text": "Catfish", "correct": true},
+        {"text": "Guppy", "correct": false}
+      ]
+    }
+  ]
+}
