@@ -1,67 +1,65 @@
-// Create the GAME object if it doesn't exist
-var GAME = GAME || {};
+// Define the GAME object globally
+var GAME = (function() {
 
-// Sample configuration loading (GitHub Pages-friendly)
-GAME.config = {};
+    var gameConfig = {};
 
-GAME.readConfig = function(callback) {
-    // Load design.ini, questions.ini, sounds.ini via AJAX
-    // Use relative paths, GitHub Pages supports HTTP(s)
-    var files = ["config/design.ini", "config/questions.ini", "config/sounds.ini"];
-    var loaded = 0;
+    function empty(obj) {
+        return obj === undefined || obj === null || obj === "";
+    }
 
-    files.forEach(function(file) {
-        $.ajax({
-            url: file,
-            dataType: "text",
-            success: function(data) {
-                GAME.config[file] = data;
-                loaded++;
-                if (loaded === files.length) {
-                    callback(); // all loaded
-                }
-            },
-            error: function() {
-                console.error("Failed to load: " + file);
-                loaded++;
-                if (loaded === files.length) {
-                    callback(); // continue even if errors
-                }
+    function readConfig(fileName, callback) {
+        // Fetch INI files from GitHub Pages (CORS-safe)
+        $.get(fileName)
+            .done(function(data) {
+                callback(data);
+            })
+            .fail(function() {
+                console.error("Failed to load config file:", fileName);
+                callback(null);
+            });
+    }
+
+    function init() {
+        // Example: Load all necessary configs
+        readConfig("config/fishinggame-design.ini", function(designData){
+            if (!empty(designData)) {
+                gameConfig.design = designData;
             }
         });
-    });
-};
 
-GAME.init = function() {
-    console.log("Initializing game...");
+        readConfig("config/fishinggame-questions.ini", function(questionData){
+            if (!empty(questionData)) {
+                gameConfig.questions = questionData;
+            }
+        });
 
-    // Load config first
-    GAME.readConfig(function() {
-        console.log("Config loaded:", GAME.config);
+        // Initialize game UI
+        setupUI();
 
-        // Initialize canvas and game state
-        var canvas = document.getElementById("gameCanvas");
-        if (!canvas) {
-            console.error("Canvas element not found!");
+        console.log("GAME initialized!");
+    }
+
+    function setupUI() {
+        var container = $("#gameContainer");
+        if (container.length === 0) {
+            console.error("Game container not found!");
             return;
         }
 
-        GAME.ctx = canvas.getContext("2d");
+        container.html("<p>Welcome to the Fishing Game!</p>");
+        container.css({
+            width: "800px",
+            height: "600px",
+            backgroundColor: "#87CEEB", // light blue
+            border: "2px solid #000",
+            textAlign: "center",
+            lineHeight: "600px",
+            fontFamily: "Arial, sans-serif",
+            color: "#fff"
+        });
+    }
 
-        // Example: clear screen
-        GAME.ctx.fillStyle = "#87ceeb"; // sky blue
-        GAME.ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Display "Game Ready"
-        GAME.ctx.fillStyle = "#000";
-        GAME.ctx.font = "30px Arial";
-        GAME.ctx.fillText("Fishing Game Ready!", 200, 300);
-
-        // You can add further game initialization here
-    });
-};
-
-GAME.start = function() {
-    console.log("Starting game...");
-    // Main game loop or logic goes here
-};
+    return {
+        init: init
+    };
+})();

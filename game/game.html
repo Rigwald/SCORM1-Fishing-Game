@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Fishing Game</title>
-    <!-- CSS -->
     <link rel="stylesheet" href="css/fishinggame.css">
 </head>
 <body>
+    <div id="gameContainer"></div>
 
-    <div id="game-container">
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
-    </div>
+    <!-- Load jQuery from CDN to avoid local 404 -->
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 
-    <!-- jQuery must load first -->
-    <<script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <!-- Game script -->
+    <!-- Game scripts -->
     <script src="js/fishinggame.js"></script>
-    <!-- Callback script -->
     <script src="js/callback.js"></script>
 
     <script>
-        // Ensure GAME.init exists before calling
+        // Ensure game starts after all scripts load
         window.onload = function() {
             if (typeof GAME !== "undefined" && typeof GAME.init === "function") {
                 GAME.init();
@@ -29,6 +25,5 @@
             }
         };
     </script>
-
 </body>
 </html>
