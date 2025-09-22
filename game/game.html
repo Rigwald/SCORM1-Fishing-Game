@@ -4,42 +4,53 @@
     <meta charset="UTF-8">
     <title>Fishing Game</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery -->
+    <script src="js/jquery-1.7.1.min.js"></script>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="fonts/fonts.css">
+    <!-- Game JS -->
+    <script src="js/fishinggame.js"></script>
+    <script src="js/callback.js"></script>
 
-    <!-- JS Libraries -->
-    <script src="js/game.js" defer></script>
-    <script src="js/utils.js" defer></script>
-
-    <!-- Config -->
-    <script>
-        // Load config.html via fetch or iframe (if needed)
-        // Example: fetch config.json or include config.js from config folder
-        // No SCORM API calls here
-    </script>
+    <!-- Game CSS -->
+    <link rel="stylesheet" href="css/fishinggame.css">
 </head>
 <body>
-    <!-- Main Game Container -->
-    <div id="game-container">
-        <!-- Game will initialize here -->
+<div class="game">
+    <div id="game" class="step-0">
+        <div class="score">0</div>
+        <div class="time">0</div>
+        <div class="progressbar"></div>
+        <div class="board">
+            <div class="rope"></div>
+            <div class="fishes"></div>
+        </div>
+
+        <!-- Question Screen -->
+        <div class="step-4 question-block-wrapper">
+            <div class="question-block">
+                <div class="question-image"></div>
+                <div class="question-text"></div>
+            </div>
+            <div class="question-choose"></div>
+            <a id="step4confirmbutton" class="button-question-confirm">Confirm</a>
+            <a id="step4continuebutton" class="button-question-continue">Continue</a>
+        </div>
+
+        <!-- Results -->
+        <div class="step-5 result-block-wrapper">
+            <div class="result-block">
+                <h1>Results</h1>
+                <div class="description"><div></div></div>
+            </div>
+            <a id="step5replaybutton" class="button-result-continue">Replay</a>
+        </div>
     </div>
+</div>
 
-    <!-- Optional iframe for config if your game expects it -->
-    <iframe src="config/config.html" id="config-frame" style="display:none;"></iframe>
-
-    <script>
-        // SCORM removed — no doLMSInitialize or API calls
-        // Initialize the game
-        document.addEventListener("DOMContentLoaded", function() {
-            if (typeof initGame === "function") {
-                initGame("game-container");
-            } else {
-                console.error("Game initialization function not found!");
-            }
-        });
-    </script>
+<script>
+    $(document).ready(function () {
+        game.start();
+    });
+</script>
 </body>
 </html>
