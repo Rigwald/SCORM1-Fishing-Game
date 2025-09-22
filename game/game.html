@@ -4,53 +4,41 @@
     <meta charset="UTF-8">
     <title>Fishing Game</title>
 
-    <!-- jQuery -->
-    <script src="js/jquery-1.7.1.min.js"></script>
-
-    <!-- Game JS -->
-    <script src="js/fishinggame.js"></script>
-    <script src="js/callback.js"></script>
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../core/core.css">
 
     <!-- Game CSS -->
     <link rel="stylesheet" href="css/fishinggame.css">
+
+    <!-- Fonts CSS (create this file in fonts/ if missing) -->
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+
 </head>
 <body>
-<div class="game">
-    <div id="game" class="step-0">
-        <div class="score">0</div>
-        <div class="time">0</div>
-        <div class="progressbar"></div>
-        <div class="board">
-            <div class="rope"></div>
-            <div class="fishes"></div>
-        </div>
 
-        <!-- Question Screen -->
-        <div class="step-4 question-block-wrapper">
-            <div class="question-block">
-                <div class="question-image"></div>
-                <div class="question-text"></div>
-            </div>
-            <div class="question-choose"></div>
-            <a id="step4confirmbutton" class="button-question-confirm">Confirm</a>
-            <a id="step4continuebutton" class="button-question-continue">Continue</a>
-        </div>
-
-        <!-- Results -->
-        <div class="step-5 result-block-wrapper">
-            <div class="result-block">
-                <h1>Results</h1>
-                <div class="description"><div></div></div>
-            </div>
-            <a id="step5replaybutton" class="button-result-continue">Replay</a>
-        </div>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="800" height="600">Your browser does not support canvas.</canvas>
     </div>
-</div>
 
-<script>
-    $(document).ready(function () {
-        game.start();
-    });
-</script>
+    <!-- jQuery -->
+    <script src="../core/jquery-1.7.1.js"></script>
+
+    <!-- Core JS -->
+    <script src="../core/core.js"></script>
+
+    <!-- Game Scripts -->
+    <script src="js/fishinggame.js"></script>
+    <script src="js/callback.js"></script>
+
+    <!-- Initialize game -->
+    <script>
+        window.onload = function() {
+            if (typeof GAME !== 'undefined' && typeof GAME.init === 'function') {
+                GAME.init();
+            } else {
+                console.error("GAME.init() not found. Ensure fishinggame.js loaded correctly.");
+            }
+        };
+    </script>
 </body>
 </html>

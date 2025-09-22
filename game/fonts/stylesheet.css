@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Molot';
+    src: url('molot-webfont-webfont.eot'); /* IE9 Compat Modes */
+    src: url('molot-webfont-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('molot-webfont-webfont.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, .game {
+    font-family: 'Molot', sans-serif;
+}
