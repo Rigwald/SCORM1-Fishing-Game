@@ -3,42 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Fishing Game</title>
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="../core/core.css">
-
-    <!-- Game CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/fishinggame.css">
-
-    <!-- Fonts CSS (create this file in fonts/ if missing) -->
-    <link rel="stylesheet" href="fonts/stylesheet.css">
-
 </head>
 <body>
 
     <div id="game-container">
-        <canvas id="gameCanvas" width="800" height="600">Your browser does not support canvas.</canvas>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
     </div>
 
-    <!-- jQuery -->
-    <script src="../core/jquery-1.7.1.js"></script>
-
-    <!-- Core JS -->
-    <script src="../core/core.js"></script>
-
-    <!-- Game Scripts -->
+    <!-- jQuery must load first -->
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <!-- Game script -->
     <script src="js/fishinggame.js"></script>
+    <!-- Callback script -->
     <script src="js/callback.js"></script>
 
-    <!-- Initialize game -->
     <script>
+        // Ensure GAME.init exists before calling
         window.onload = function() {
-            if (typeof GAME !== 'undefined' && typeof GAME.init === 'function') {
+            if (typeof GAME !== "undefined" && typeof GAME.init === "function") {
                 GAME.init();
             } else {
                 console.error("GAME.init() not found. Ensure fishinggame.js loaded correctly.");
             }
         };
     </script>
+
 </body>
 </html>
