@@ -1,1 +1,91 @@
-GET https://rigwald.github.io/SCORM1-Fishing-Game/game/fishinggame.js net::ERR_ABORTED 404 (Not Found)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fishing Game</title>
+    <link rel="stylesheet" href="css/fishinggame.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Game JS -->
+    <script src="js/fishinggame.js"></script>
+</head>
+<body class="gamebody">
+    <div class="game step-0">
+        <!-- Step 0: Welcome / Start -->
+        <div class="step-0">
+            <h1>Welcome to the Fishing Game!</h1>
+            <a href="#" class="button" id="startGameButton">Start</a>
+        </div>
+
+        <!-- Step 1 (example placeholder) -->
+        <div class="step-1">
+            <h2>Instructions</h2>
+            <p>Catch as many fish as you can!</p>
+            <a href="#" class="button" id="nextStep1">Continue</a>
+        </div>
+
+        <!-- Step 2 Description -->
+        <div class="step-2">
+            <div class="step-2-description">
+                <div>
+                    <div>Get ready to fish!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Question -->
+        <div class="step-4 unanswered type-multiple">
+            <div class="question-choose-wrapper">
+                <div class="question-choose">
+                    <!-- Variants dynamically added by JS -->
+                </div>
+                <div class="buttons buttons-confirm">
+                    <a href="#" class="button" id="confirmAnswer">Confirm</a>
+                </div>
+            </div>
+            <div class="question-answered-block-wrapper">
+                <div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Result -->
+        <div class="step-5">
+            <div class="result-block-wrapper">
+                <div>
+                    <div>
+                        <div class="score-description">Your Score:</div>
+                        <div class="quiz-results"></div>
+                        <a href="#" class="button" id="step5replaybutton">Replay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Score & Time -->
+        <div class="score">0</div>
+        <div class="time">0</div>
+
+        <!-- Board -->
+        <div class="board">
+            <!-- Ropes, hooks, and fish will be dynamically added by JS -->
+        </div>
+    </div>
+
+    <script>
+        // Hook up Start button
+        $(document).ready(function(){
+            $('#startGameButton').click(function(e){
+                e.preventDefault();
+                // Call the game JS function to start
+                if(typeof startGame === "function"){
+                    startGame();
+                } else {
+                    console.error("startGame() not defined in fishinggame.js");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
